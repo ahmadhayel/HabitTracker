@@ -4,6 +4,7 @@ import SwiftData
 struct DashboardView: View {
     
     @Query private var habits: [Habit]
+    @State private var showAddHabit = false
     
     var body: some View {
         NavigationStack {
@@ -13,6 +14,18 @@ struct DashboardView: View {
                 }
             }
             .navigationTitle("Habit Tracker")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showAddHabit = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showAddHabit) {
+                AddHabitSheet()
+            }
         }
     }
 }
