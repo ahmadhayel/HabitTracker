@@ -1,18 +1,18 @@
-//
-//  DashboardView.swift
-//  
-//
-//  Created by Ahmad Alhayel on 4/27/26.
-//
-
 import SwiftUI
+import SwiftData
 
 struct DashboardView: View {
+    
+    @Query private var habits: [Habit]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                ForEach(habits) { habit in
+                    Text(habit.name)
+                }
+            }
+            .navigationTitle("Habit Tracker")
+        }
     }
-}
-
-#Preview {
-    DashboardView()
 }
