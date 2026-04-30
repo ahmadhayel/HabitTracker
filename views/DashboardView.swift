@@ -3,14 +3,32 @@ import SwiftData
 
 struct DashboardView: View {
     
-    @Query private var habits: [Habit]
+    @Query(sort: \Habit.createdAt, order: .reverse)
+    private var habits: [Habit]
+    
     @State private var showAddHabit = false
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(habits) { habit in
-                    HabitRowView(habit: habit)
+            
+            Group {
+                if habits.isEmpty {
+                    ContentUnavailableView(
+                        "No Habits Yet",
+                        systemImage: "list.bullet.clipboard",
+                        description: Text("Tap + to add your first habit.")
+                    )
+                } else {
+                    List {
+                        ForEach(habits) { habit in
+                            NavigationLink {
+                                HabitDetailView(habit: habit)
+                            } label: {
+                                HabitRowView(habit: habit)
+                            }
+                        }
+                    }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Habit Tracker")
@@ -28,4 +46,8 @@ struct DashboardView: View {
             }
         }
     }
+}
+
+#Preview {
+    DashboardView()
 }
