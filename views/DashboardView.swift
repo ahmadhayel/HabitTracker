@@ -10,7 +10,7 @@ struct DashboardView: View {
         NavigationStack {
             List {
                 ForEach(habits) { habit in
-                    Text(habit.name)
+                    HabitRowView(habit: habit)
                 }
             }
             .navigationTitle("Habit Tracker")
