@@ -28,7 +28,6 @@ struct DashboardView: View {
                             }
                         }
                     }
-                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Habit Tracker")
@@ -46,8 +45,4 @@ struct DashboardView: View {
             }
         }
     }
-}
-
-#Preview {
-    DashboardView()
 }

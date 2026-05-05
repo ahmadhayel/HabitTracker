@@ -7,22 +7,23 @@ final class Habit {
     var icon: String
     var color: String
     var createdAt: Date
-
+    
     var reminderEnabled: Bool
     var reminderHour: Int
     var reminderMinute: Int
-
+    
     @Relationship(deleteRule: .cascade)
     var logs: [HabitLog] = []
-
-    init(name: String,
-         icon: String,
-         color: String,
-         createdAt: Date = Date(),
-         reminderEnabled: Bool = false,
-         reminderHour: Int = 8,
-         reminderMinute: Int = 0) {
-
+    
+    init(
+        name: String,
+        icon: String,
+        color: String,
+        createdAt: Date = Date(),
+        reminderEnabled: Bool = false,
+        reminderHour: Int = 8,
+        reminderMinute: Int = 0
+    ) {
         self.name = name
         self.icon = icon
         self.color = color
